@@ -1,11 +1,19 @@
 import { Request, Response } from "express";
 import { createMetric } from "../service/metric.service";
-import log from '../utils/logger';
+import log from "../utils/logger";
 
 async function createMetricHandler(req: Request, res: Response) {
+  console.log("-----------------------------");
+  console.log("REQUEST BODY   :", req.body);
+  console.log("REQUEST HEADER :", req.header);
+  console.log("-----------------------------");
+
   try {
     const metric = await createMetric(req.body);
-    log.info(`Add to db the metrics comes from "${metric.URL}"`, metric.toJSON());
+    log.info(
+      `Add to db the metrics comes from "${metric.URL}"`,
+      metric.toJSON()
+    );
     return res.send(metric.toJSON());
   } catch (error) {
     log.error(error);
