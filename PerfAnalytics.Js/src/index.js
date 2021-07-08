@@ -1,18 +1,26 @@
-// Measure FCP in JavaScript from https://web.dev/
+// Helper functions
+const convertToSec = (milliseconds) => {
+  return milliseconds / 1000;
+};
+
+const getNavigationPerf = async () => {
+  const perfEntries = await performance.getEntriesByType("navigation");
+  return perfEntries[0];
+};
+
+// Measure performance metrics
 const getFCP = () => {
   const fcp = window.performance
     .getEntriesByType("paint")
     .find((elem) => elem.name === "first-contentful-paint");
-  return fcp.startTime;
+  return convertToSec(fcp.startTime);
 };
 
-// Measure TTFP in JavaScript
 const getTTFB = (perf) => {
-  const ttfb = perf.responseStart - perf.requestStart;
-  return ttfb;
+  const TTFB = perf.responseStart - perf.requestStart;
+  return convertToSec(TTFB);
 };
 
-// Measure DOM Load in JavaScript
 const getDOMLoad = (perf) => {
   // TODO decided the performance measure approach
 
@@ -25,16 +33,15 @@ const getDOMLoad = (perf) => {
   //   performance.timing.domContentLoadedEventEnd -
   //   performance.timing.navigationStart;
 
-  const domLoad = perf.domComplete;
-  return domLoad;
+  const DOMLoad = perf.domComplete;
+  return convertToSec(DOMLoad);
 };
 
-// Measure Window Load Load in JavaScript
 const getWindowLoad = (perf) => {
   // TODO Find performance API v2 equal
 
   const windowLoad = new Date().valueOf() - performance.timing.navigationStart;
-  return windowLoad;
+  return convertToSec(windowLoad);
 };
 
 // Network timings for ------------------------------------------------------
@@ -53,11 +60,6 @@ const getStyles = (entries) =>
   // TODO Handle those value separately
   entries.filter((entry) => entry.initiatorType === "link");
 
-const getNavigationPerf = async () => {
-  const perfEntries = await performance.getEntriesByType("navigation");
-  return perfEntries[0];
-};
-
 // ---------------------------------------------------------------------------
 
 async function logMetrics() {
@@ -74,8 +76,6 @@ async function init() {
   // console.log(`Scripts(entries) :`, getScripts(entries));
   // console.log(`Images(entries) :`, getImages(entries));
   // console.log(`Styles(entries) :`, getStyles(entries));
-
-  // RESULT JSON -----------------------------------------------
 
   fetch("http://localhost:6060/api/metrics", {
     method: "POST",
