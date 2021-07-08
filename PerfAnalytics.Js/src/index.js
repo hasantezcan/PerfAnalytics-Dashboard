@@ -1,25 +1,15 @@
 // Measure FCP in JavaScript from https://web.dev/
 const getFCP = () => {
-  return new PerformanceObserver((entryList) => {
-    for (const entry of entryList.getEntriesByName("first-contentful-paint")) {
-      console.log("FCP candidate:", entry.startTime, entry);
-    }
-  }).observe({ type: "paint", buffered: true });
-};
-
-// Measure LCP in JavaScript from https://web.dev/
-const getLCP = () => {
-  return new PerformanceObserver((entryList) => {
-    for (const entry of entryList.getEntries()) {
-      console.log("LCP candidate:", entry.startTime, entry);
-    }
-  }).observe({ type: "largest-contentful-paint", buffered: true });
+  const fcp = window.performance
+    .getEntriesByType("paint")
+    .find((elem) => elem.name === "first-contentful-paint");
+  return fcp.startTime;
 };
 
 // Measure TTFP in JavaScript
 const getTTFB = (perf) => {
   const ttfb = perf.responseStart - perf.requestStart;
-  console.log("TTFB value:", ttfb, "ms");
+  return ttfb;
 };
 
 // Measure DOM Load in JavaScript
@@ -36,7 +26,7 @@ const getDOMLoad = (perf) => {
   //   performance.timing.navigationStart;
 
   const domLoad = perf.domComplete;
-  console.log("DOM Load value:", domLoad, "ms");
+  return domLoad;
 };
 
 // Measure Window Load Load in JavaScript
@@ -44,10 +34,10 @@ const getWindowLoad = (perf) => {
   // TODO Find performance API v2 equal
 
   const windowLoad = new Date().valueOf() - performance.timing.navigationStart;
-  console.log("Window Load value:", windowLoad, "ms");
+  return windowLoad;
 };
 
-// Network timings for
+// Network timings for ------------------------------------------------------
 const getEntries = () => {
   return performance.getEntriesByType("resource");
 };
@@ -63,25 +53,64 @@ const getStyles = (entries) =>
   // TODO Handle those value separately
   entries.filter((entry) => entry.initiatorType === "link");
 
-async function init() {
+const getNavigationPerf = async () => {
   const perfEntries = await performance.getEntriesByType("navigation");
-  const [perf] = await perfEntries;
+  return perfEntries[0];
+};
 
-  // console.log(`perfEntries`, perf);
+// ---------------------------------------------------------------------------
 
-  getTTFB(perf);
-  getDOMLoad(perf);
-  getWindowLoad(perf);
-  getFCP();
-  getLCP();
-
-  const entries = getEntries();
-  console.log(`Entries :`, entries);
-  console.log(`Scripts(entries) :`, getScripts(entries));
-  console.log(`Images(entries) :`, getImages(entries));
-  console.log(`Styles(entries) :`, getStyles(entries));
+async function logMetrics() {
+  console.table(await collectMetrics());
 }
 
+async function init() {
+  const test = await collectMetrics();
+
+  // ENTRIES --------------------------------------------------
+  // |
+  // const entries = getEntries();
+  // console.log(`Entries :`, entries);
+  // console.log(`Scripts(entries) :`, getScripts(entries));
+  // console.log(`Images(entries) :`, getImages(entries));
+  // console.log(`Styles(entries) :`, getStyles(entries));
+
+  // RESULT JSON -----------------------------------------------
+
+  fetch("http://localhost:6060/api/metrics", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(test),
+  }).then(console.log);
+}
+
+async function collectMetrics() {
+  const perf = await getNavigationPerf();
+  return {
+    UserAgent: navigator.userAgent,
+    URL: window.location.href,
+    TTFB: await getTTFB(perf),
+    DomLoad: await getDOMLoad(perf),
+    WindowLoad: await getWindowLoad(perf),
+    FCP: await getFCP(),
+  };
+}
+
+fetch("http://localhost:6060/api/healthcheck", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+  },
+}).then(console.log);
+
 window.addEventListener
-  ? window.addEventListener("load", init, false)
+  ? window.addEventListener(
+      "load",
+      () => {
+        init(), logMetrics();
+      },
+      false
+    )
   : window.attachEvent && window.attachEvent("onload", init);
