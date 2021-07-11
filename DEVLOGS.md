@@ -62,7 +62,7 @@
 
   - In this article you will learn the basic of performance terms and basic usage!
 
-
+---
 
 ## DAY 2 - 04 July 2021
 
@@ -121,7 +121,31 @@
 ### **`🖖 Day summary:`**
   - The performance information that I need is almost ready.
   - I am not sure about some values validation but I am working on it.
-  - I decided to move on google sheets and google scripts while building API.
+  - I decided to move on **google sheets** and **google scripts** while building API.
 
+---
 
 ## DAY 3 - 05 July 2021
+
+I have just started to build API with nodejs and MongoDB. Why I didn't continue with google sheets and google scripts because I realized I couldn't have an opportunity to test my code and also I build the whole API side to the Cloud therefore I can't commit my changes in this repository. Maybe that was a cool idea but for this case, I will stay with nodeJs and mongo DB.
+
+### **`🖖 Day summary:`**
+  - Refactored whole project directories 
+  - Started to the API with NodeJs and Mongo DB
+
+---
+## DAY 4 - 06 July 2021
+
+Yesterday I started to build API with JS but after that, I thought I can go with **typescript**. I spend a little resource time learning usage typescript on the server-side. And voilà! 🎉  I created the metrics post request today. From now on, I will connect the nodejs package with API.
+
+### **`🖖 Day summary:`**
+  - Rebuild api with typescript
+  - Build `post api/metrics` endpoint 
+  - Connect API with Mongo DB
+
+---
+
+## DAY 5 - 07 July 2021 
+
+Today I connected PerfAnalytics JS with PerfAnalytics API.
+Also made some improvements PerfAnalytics JS side.
