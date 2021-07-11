@@ -1,13 +1,20 @@
+import { Typography } from 'antd'
+
 import { useMetricContext } from '~/context/MetricProvider'
-import ChartCard from '@components/ChartCard'
+
+import BaseLayout from '~/layouts/BaseLayout'
+import PerfCharts from './PerfCharts/index'
 
 function Main() {
   const {} = useMetricContext()
 
+  const { Title } = Typography
+
   return (
-    <>
-      <ChartCard />
-    </>
+    <BaseLayout>
+      <Title>PerfAnalytics.Dashboard</Title>
+      <PerfCharts />
+    </BaseLayout>
   )
 }
 
