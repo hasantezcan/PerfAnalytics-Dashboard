@@ -1,14 +1,27 @@
-import { createContext, useContext, PropsWithChildren, useState } from 'react'
+import {
+  createContext,
+  useContext,
+  PropsWithChildren,
+  useState,
+  Dispatch,
+  SetStateAction
+} from 'react'
 
-interface MetricContextModel {}
+import { Metric } from '~/models/Metric'
 
-const MetricContext = createContext<MetricContextModel>(
-  {} as MetricContextModel
-)
+interface MetricContextModel {
+  metrics: Metric[]
+  setMetrics: Dispatch<SetStateAction<Metric[]>>
+}
+
+const MetricContext = createContext<MetricContextModel>({} as MetricContextModel)
 function MetricProvider({ children }: PropsWithChildren<any>) {
+  const [metrics, setMetrics] = useState<Metric[]>([])
 
-  
-  const context: MetricContextModel = {}
+  const context: MetricContextModel = {
+    metrics,
+    setMetrics
+  }
 
   return (
     <MetricContext.Provider value={context}>{children}</MetricContext.Provider>
