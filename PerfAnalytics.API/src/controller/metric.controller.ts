@@ -19,16 +19,17 @@ async function createMetricHandler(req: Request, res: Response) {
   }
 }
 
+// TODO handle any types!
 async function getMetricsHandler(req: Request, res: Response) {
   const start = req?.query.start
-    ? moment(parseInt(req?.query.end as any)).toDate()
+    ? moment(parseInt(req?.query.start as any)).toDate()
     : moment().subtract(1, "hours").toDate();
 
   const end = req?.query.end
     ? moment(parseInt(req?.query.end as any)).toDate()
     : moment().toDate();
 
-  const createdAt = { $gte: start, $lt: end } as any;
+  const createdAt = { $gte: start, $lt: end };
 
   console.log("-----------------------------");
   console.log(`QUERY :`, createdAt);
@@ -39,7 +40,8 @@ async function getMetricsHandler(req: Request, res: Response) {
     const metrics = await findMetrics({ createdAt });
     console.log(`METRICS RESULT :`, metrics);
 
-    if (!metrics) {
+    if (!metrics || metrics.toString() === "") {
+      log.error("NOT FOUND");
       return res.sendStatus(404);
     }
     return res.send(metrics);

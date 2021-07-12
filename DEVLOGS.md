@@ -149,3 +149,40 @@ Yesterday I started to build API with JS but after that, I thought I can go with
 
 Today I connected PerfAnalytics JS with PerfAnalytics API.
 Also made some improvements PerfAnalytics JS side.
+
+---
+## DAY 9 - 11 July 2021
+
+Today I start to build **PerfAnalytics.Dashboard** with react-typescript.
+
+I will move on with antDesign for fast development. 
+
+
+**Which graph chart ?**  
+I made a little search for decided which one is best option for me.
+
+I found couple of blog post about that topic.[[0]](https://dev.to/syakirurahman/7-best-react-chart-graph-libraries-how-to-use-them-with-demo-32ak)
+
+
+I liked [chartjs](https://www.chartjs.org/)  but this has not a React support. Actually, it was but now [deprecated](https://github.com/reactjs/react-chartjs).
+
+So I decided to move on with the other option ["recharts"](https://recharts.org/en-US/examples/SimpleLineChart)
+
+
+---
+
+**`❓ Question:`** What is **uv**, **pv**, **amt**?
+
+> {name: 'Page A', uv: 400, pv: 2400, amt: 2400}
+
+I see these values inside of the reCharts graph data.
+
+> [Q: What is uv and pv? #171](https://github.com/recharts/recharts/issues/171) 
+> [Q: What is the 'amt' property being used in all example data sets ? #467](https://github.com/recharts/recharts/issues/467) 
+
+```
+amt = amount
+pv = PageView
+uv = UniqueVisitor
+```
+---
