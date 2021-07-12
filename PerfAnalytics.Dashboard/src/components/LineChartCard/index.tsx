@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd'
+import { Card, Col } from 'antd'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 
 interface LineChartCardProps {
