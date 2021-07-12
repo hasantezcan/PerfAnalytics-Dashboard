@@ -5,6 +5,7 @@ interface Metric {
   TTFB: number
   DomLoad: number
   WindowLoad: number
+  createdAt: Date
 }
 
 export type { Metric }

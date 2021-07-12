@@ -1,12 +1,13 @@
-import { Typography } from 'antd'
+import { Button, Typography } from 'antd'
 
-import { useMetricContext } from '~/context/MetricProvider'
+// import { useMetricContext } from '~/context/MetricProvider'
 
 import BaseLayout from '~/layouts/BaseLayout'
+import { fetchMetricByTimeRange } from '~/service'
 import PerfCharts from './PerfCharts/index'
 
 function Main() {
-  const {} = useMetricContext()
+  // const {} = useMetricContext()
 
   const { Title } = Typography
 
@@ -14,6 +15,7 @@ function Main() {
     <BaseLayout>
       <Title>PerfAnalytics.Dashboard</Title>
       <PerfCharts />
+      <Button onClick={() => fetchMetricByTimeRange()}>getMetrics</Button>
     </BaseLayout>
   )
 }
