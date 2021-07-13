@@ -14,11 +14,32 @@ function createMetric(input: DocumentDefinition<MetricDocument>) {
 
 function findMetrics(query: FilterQuery<MetricDocument>) {
   try {
-    return Metric.find(query);
+    return Metric.find({
+      createdAt: query.timeRange,
+    });
   } catch (error) {
     throw new Error(error);
   }
 }
+
+async function findURLMetrics(query: FilterQuery<MetricDocument>) {
+  try {
+    const UrlRelatedMetrics = await getUrlRelatedMetrics(query);
+    return UrlRelatedMetrics.map((url) => {
+      return {
+        URL: url!.url,
+        TTFB: getDataByMetricType(url!.metrics, "TTFB"),
+        FCP: getDataByMetricType(url!.metrics, "FCP"),
+        DomLoad: getDataByMetricType(url!.metrics, "DomLoad"),
+        WindowLoad: getDataByMetricType(url!.metrics, "WindowLoad"),
+      };
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// findURLMetrics Helpers
 
 async function getUrlList() {
   const rawURL = await Metric.find().select(["URL"]);
@@ -29,7 +50,7 @@ async function getUrlList() {
 function getURLwithMetrics(url: string, query: FilterQuery<MetricDocument>) {
   return Metric.find({
     URL: url,
-    ...query,
+    createdAt: query.timeRange,
   });
 }
 
@@ -60,22 +81,5 @@ const getDataByMetricType = (data: any, type: string) =>
       value: d[type],
     };
   });
-
-async function findURLMetrics(query: FilterQuery<MetricDocument>) {
-  try {
-    const UrlRelatedMetrics = await getUrlRelatedMetrics(query);
-    return UrlRelatedMetrics.map((url) => {
-      return {
-        URL: url!.url,
-        TTFB: getDataByMetricType(url!.metrics, "TTFB"),
-        FCP: getDataByMetricType(url!.metrics, "FCP"),
-        DomLoad: getDataByMetricType(url!.metrics, "DomLoad"),
-        WindowLoad: getDataByMetricType(url!.metrics, "WindowLoad"),
-      };
-    });
-  } catch (error) {
-    throw new Error(error);
-  }
-}
 
 export { createMetric, findMetrics, findURLMetrics };

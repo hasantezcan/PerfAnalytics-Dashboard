@@ -25,11 +25,11 @@ async function createMetricHandler(req: Request, res: Response) {
 
 // TODO handle any types!
 async function getMetricsHandler(req: Request, res: Response) {
-  const createdAt = calculateTimeRange(req);
+  const timeRange = calculateTimeRange(req);
 
   try {
     log.info("Metrics are searching ...");
-    const metrics = await findMetrics({ createdAt });
+    const metrics = await findMetrics({ timeRange });
     console.log(`METRICS RESULT :`, metrics);
 
     if (!metrics || metrics.toString() === "") {
@@ -44,11 +44,11 @@ async function getMetricsHandler(req: Request, res: Response) {
 }
 
 async function getMetricsByURLHandler(req: Request, res: Response) {
-  const createdAt = calculateTimeRange(req);
+  const timeRange = calculateTimeRange(req);
 
   try {
     log.info("Metrics are searching ...");
-    const metrics = await findURLMetrics({ createdAt });
+    const metrics = await findURLMetrics({ timeRange });
 
     console.log(`METRICS RESULT :`, metrics);
 
