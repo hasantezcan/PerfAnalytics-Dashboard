@@ -5,6 +5,7 @@ import { createMetricSchema } from "./schema/metric.schema";
 import {
   createMetricHandler,
   getMetricsHandler,
+  getMetricsByURLHandler,
 } from "./controller/metric.controller";
 
 export default function (app: Express) {
@@ -22,4 +23,7 @@ export default function (app: Express) {
 
   // Get metrics
   app.get("/api/metrics", getMetricsHandler);
+
+  // Get metrics by url
+  app.get("/api/metrics-by-url", getMetricsByURLHandler);
 }

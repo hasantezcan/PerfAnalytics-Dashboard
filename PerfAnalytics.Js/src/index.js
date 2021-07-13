@@ -10,10 +10,14 @@ const getNavigationPerf = async () => {
 
 // Measure performance metrics
 const getFCP = () => {
-  const fcp = window.performance
-    .getEntriesByType("paint")
-    .find((elem) => elem.name === "first-contentful-paint");
-  return convertToSec(fcp.startTime);
+  if (window) {
+    const fcp = window.performance
+      .getEntriesByType("paint")
+      .find((elem) => elem.name === "first-contentful-paint");
+    if (fcp.startTime !== undefined) {
+      return convertToSec(fcp.startTime);
+    }
+  }
 };
 
 const getTTFB = (perf) => {
@@ -22,24 +26,13 @@ const getTTFB = (perf) => {
 };
 
 const getDOMLoad = (perf) => {
-  // TODO decided the performance measure approach
-
-  // const domLoad =
-  //   perf.domContentLoadedEventEnd - performance.timing.navigationStart;
-
-  // const domLoad = perf.domContentLoadedEventEnd - perf.domContentLoadedEventStart;
-
-  // const domLoad =
-  //   performance.timing.domContentLoadedEventEnd -
-  //   performance.timing.navigationStart;
-
   const DOMLoad = perf.domComplete;
   return convertToSec(DOMLoad);
 };
 
 const getWindowLoad = (perf) => {
   // TODO Find performance API v2 equal
-
+  // TODO CHECK HERE AGAIN!
   const windowLoad = new Date().valueOf() - performance.timing.navigationStart;
   return convertToSec(windowLoad);
 };

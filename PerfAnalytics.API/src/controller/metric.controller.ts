@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
-import moment from "moment";
 import log from "../utils/logger";
 
-import { createMetric, findMetrics } from "../service/metric.service";
+import { calculateTimeRange } from "../utils/metric.helper";
+import {
+  createMetric,
+  findMetrics,
+  findURLMetrics,
+} from "../service/metric.service";
 
 async function createMetricHandler(req: Request, res: Response) {
   console.log("-----------------------------");
@@ -21,19 +25,7 @@ async function createMetricHandler(req: Request, res: Response) {
 
 // TODO handle any types!
 async function getMetricsHandler(req: Request, res: Response) {
-  const start = req?.query.start
-    ? moment(parseInt(req?.query.start as any)).toDate()
-    : moment().subtract(1, "hours").toDate();
-
-  const end = req?.query.end
-    ? moment(parseInt(req?.query.end as any)).toDate()
-    : moment().toDate();
-
-  const createdAt = { $gte: start, $lt: end };
-
-  console.log("-----------------------------");
-  console.log(`QUERY :`, createdAt);
-  console.log("-----------------------------");
+  const createdAt = calculateTimeRange(req);
 
   try {
     log.info("Metrics are searching ...");
@@ -51,4 +43,20 @@ async function getMetricsHandler(req: Request, res: Response) {
   }
 }
 
-export { createMetricHandler, getMetricsHandler };
+async function getMetricsByURLHandler(req: Request, res: Response) {
+  const createdAt = calculateTimeRange(req);
+
+  try {
+    log.info("Metrics are searching ...");
+    const metrics = await findURLMetrics({ createdAt });
+
+    console.log(`METRICS RESULT :`, metrics);
+
+    return res.send(metrics);
+  } catch (error) {
+    log.error(error);
+    return res.status(400).send(error.message);
+  }
+}
+
+export { createMetricHandler, getMetricsHandler, getMetricsByURLHandler };
