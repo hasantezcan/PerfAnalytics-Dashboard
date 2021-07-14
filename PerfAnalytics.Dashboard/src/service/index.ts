@@ -1,6 +1,6 @@
 import axios from './axios'
 
-import { Metric } from '~/models/Metric'
+import { Metric, MetricbyURL } from '~/models/Metric'
 
 async function fetchMetricByTimeRange(start?: Date, end?: Date) {
   const { data } = await axios.get('/api/metrics', {
@@ -22,7 +22,7 @@ async function fetchMetricByURL(start?: Date, end?: Date) {
   })
   console.log(`data url: `, data)
 
-  return data as Metric[]
+  return data as MetricbyURL[]
 }
 
 export { fetchMetricByTimeRange, fetchMetricByURL }
