@@ -1,11 +1,23 @@
 interface Metric {
   URL: string
   UserAgent: string
-  FCP: number
   TTFB: number
+  FCP: number
   DomLoad: number
   WindowLoad: number
   createdAt: Date
 }
 
-export type { Metric }
+interface TimeValue {
+  time: Date
+  value: number
+}
+interface MetricbyURL {
+  URL: string
+  TTFB: TimeValue
+  FCP: TimeValue
+  DomLoad: TimeValue
+  WindowLoad: TimeValue
+}
+
+export type { Metric, MetricbyURL, TimeValue }

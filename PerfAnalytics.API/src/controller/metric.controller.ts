@@ -49,9 +49,12 @@ async function getMetricsByURLHandler(req: Request, res: Response) {
   try {
     log.info("Metrics are searching ...");
     const metrics = await findURLMetrics({ timeRange });
-
     console.log(`METRICS RESULT :`, metrics);
 
+    if (!metrics || metrics.toString() === "") {
+      log.error("NOT FOUND");
+      return res.sendStatus(404);
+    }
     return res.send(metrics);
   } catch (error) {
     log.error(error);

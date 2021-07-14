@@ -3,7 +3,7 @@ import { Button, Typography } from 'antd'
 // import { useMetricContext } from '~/context/MetricProvider'
 
 import BaseLayout from '~/layouts/BaseLayout'
-import { fetchMetricByTimeRange } from '~/service'
+import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
 import PerfCharts from './PerfCharts/index'
 
 function Main() {
@@ -16,6 +16,7 @@ function Main() {
       <Title>PerfAnalytics.Dashboard</Title>
       <PerfCharts />
       <Button onClick={() => fetchMetricByTimeRange()}>getMetrics</Button>
+      <Button onClick={() => fetchMetricByURL()}>getURLMetrics</Button>
     </BaseLayout>
   )
 }
