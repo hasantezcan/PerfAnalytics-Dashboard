@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Checkbox, Typography, Form } from 'antd'
 
 const { Title } = Typography
 const CheckboxGroup = Checkbox.Group
-
 const defaultCheckedList = ['https://hasantezcan.dev', 'Orange']
 
 interface UrlFilterProps {
   urls: string[]
+  setSelectedUrls: (e: string[]) => void
 }
 
-function UrlFilter({ urls }: UrlFilterProps) {
+function UrlFilter({ urls, setSelectedUrls }: UrlFilterProps) {
   const [checkedList, setCheckedList] = useState(defaultCheckedList)
   const [indeterminate, setIndeterminate] = useState(true)
   const [checkAll, setCheckAll] = useState(false)
@@ -26,6 +26,10 @@ function UrlFilter({ urls }: UrlFilterProps) {
     setIndeterminate(false)
     setCheckAll(e.target.checked)
   }
+
+  useEffect(() => {
+    setSelectedUrls(checkedList)
+  }, [checkedList])
 
   return (
     <Form>
