@@ -41,8 +41,10 @@ async function findURLMetrics(query: FilterQuery<MetricDocument>) {
 
 // findURLMetrics Helpers
 
-async function getUrlList() {
-  const rawURL = await Metric.find().select(["URL"]);
+async function getUrlList(query: FilterQuery<MetricDocument>) {
+  const rawURL = await Metric.find({
+    createdAt: query.timeRange,
+  }).select(["URL"]);
   const urlList = rawURL.map((u) => u.URL);
   return [...new Set(urlList)];
 }
@@ -60,7 +62,7 @@ interface UrlRelatedMetric {
 }
 
 async function getUrlRelatedMetrics(query: FilterQuery<MetricDocument>) {
-  const URLs = await getUrlList();
+  const URLs = await getUrlList(query);
   const newArray = URLs.map(async (url: string) => {
     try {
       return {
