@@ -186,3 +186,40 @@ pv = PageView
 uv = UniqueVisitor
 ```
 ---
+
+## 15 July 2021 
+
+### Time synchronization with `ISO 8601`
+
+My database metrics recored with this format 
+
+```json
+  createdAt: 2021-07-15T07:16:27.715+00:00
+  updatedAt: 2021-07-15T07:16:27.715+00:00
+```
+
+When this metrics is recored db my local time is `10:16`. Mongo db use global timze zone gmt 000 or you can say utc 
+
+And this format name is [`ISO 8601`](https://en.wikipedia.org/wiki/ISO_8601#RFCs)
+
+
+```js
+    // Current local timestampt with vanillaJs
+    const start = new Date(`${date} ${startTime}`).getTime()
+    const end = new Date(`${date} ${endTime}`).getTime()
+
+    // Current local timestampt with momentJs
+    const end = moment(`${date} ${startTime}`).format("x")
+    const end = moment(`${date} ${endTime}`).format("x")
+
+    // Create ISO 8601 time format with momentJs
+    const start = moment(`${date} ${startTime}`).toISOString()
+    const end = moment(`${date} ${endTime}`).toISOString()
+
+    // Create ISO 8601 time format with vanillaJS
+    new Date().toISOString() // "2017-08-26T16:31:02.349Z"
+```
+
+**Source :**
+
+> [How do I format a date as ISO 8601 in moment.js?](https://stackoverflow.com/questions/25725019/how-do-i-format-a-date-as-iso-8601-in-moment-js) 

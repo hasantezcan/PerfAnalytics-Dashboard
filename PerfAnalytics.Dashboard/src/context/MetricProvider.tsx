@@ -8,35 +8,37 @@ import {
   SetStateAction
 } from 'react'
 
-import { Metric, MetricbyURL } from '~/models/Metric'
-import { fetchMetricByURL } from '~/service'
+import { Metric, MetricByURL } from '~/models/Metric'
+import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
 
 interface MetricContextModel {
   metrics: Metric[]
   setMetrics: Dispatch<SetStateAction<Metric[]>>
-  urls: string[]
-  setUrls: Dispatch<SetStateAction<string[]>>
+  urlMetrics: MetricByURL[]
+  setUrlMetrics: Dispatch<SetStateAction<MetricByURL[]>>
 }
 
 const MetricContext = createContext<MetricContextModel>(
   {} as MetricContextModel
 )
 function MetricProvider({ children }: PropsWithChildren<any>) {
-  // date.now
-  const [timeRange, setTimeRange] = useState('')
   const [metrics, setMetrics] = useState<Metric[]>([])
-  const [urlMetrics, setUrlMetrics] = useState<MetricbyURL[]>([])
-  const [urls, setUrls] = useState<string[]>([])
+  const [urlMetrics, setUrlMetrics] = useState<MetricByURL[]>([])
 
   useEffect(() => {
-    // setUrlMetrics((()=>fetchMetricByURL()))
-  }, [timeRange])
+    const initializeMetrics = async () => {
+      setMetrics(await fetchMetricByTimeRange())
+      setUrlMetrics(await fetchMetricByURL())
+    }
+
+    initializeMetrics().then()
+  }, [])
 
   const context: MetricContextModel = {
     metrics,
     setMetrics,
-    urls,
-    setUrls
+    urlMetrics,
+    setUrlMetrics
   }
 
   return (
