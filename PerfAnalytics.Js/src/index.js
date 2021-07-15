@@ -14,7 +14,7 @@ const getFCP = () => {
     const fcp = window.performance
       .getEntriesByType("paint")
       .find((elem) => elem.name === "first-contentful-paint");
-    if (fcp.startTime !== undefined) {
+    if (fcp.startTime) {
       return convertToSec(fcp.startTime);
     }
   }
