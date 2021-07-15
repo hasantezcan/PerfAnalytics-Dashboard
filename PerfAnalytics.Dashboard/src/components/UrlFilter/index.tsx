@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { Checkbox } from 'antd'
+import { Checkbox, Typography, Form } from 'antd'
+
+const { Title } = Typography
 const CheckboxGroup = Checkbox.Group
 
 const plainOptions = [
@@ -31,21 +33,27 @@ function UrlFilter() {
   }
 
   return (
-    <>
-      <Checkbox
-        indeterminate={indeterminate}
-        onChange={onCheckAllChange}
-        checked={checkAll}
-      >
-        Check all
-      </Checkbox>
+    <Form>
+      <Title level={3}>Select URL</Title>
 
-      <CheckboxGroup
-        options={plainOptions}
-        value={checkedList}
-        onChange={onChange}
-      />
-    </>
+      <Form.Item labelCol={{span:6, offset:6}}>
+        <Checkbox
+          indeterminate={indeterminate}
+          onChange={onCheckAllChange}
+          checked={checkAll}
+        >
+          Check all
+        </Checkbox>
+      </Form.Item>
+
+      <Form.Item>
+        <CheckboxGroup
+          options={plainOptions}
+          value={checkedList}
+          onChange={onChange}
+        />
+      </Form.Item>
+    </Form>
   )
 }
 

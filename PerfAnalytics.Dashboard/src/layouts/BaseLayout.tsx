@@ -13,10 +13,8 @@ function BaseLayout({ children }: PropsWithChildren<BaseLayoutProps>) {
         <Text type="danger">PerfAnalytics.Dashboard</Text>
       </Header>
       <Content>
-        <Row>
-          <Col span={12} offset={6}>
-            {children}
-          </Col>
+        <Row justify={'center'} >
+          <Col lg={{ span: 12 }}>{children}</Col>
         </Row>
       </Content>
       <Footer>Footer</Footer>
