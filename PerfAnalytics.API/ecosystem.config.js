@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "perf-analytics-api",
-      script: "yarn start",
+      script: "node ./build/src/app.js",
       instances: "max",
       env: {
         NODE_ENV: "development",
