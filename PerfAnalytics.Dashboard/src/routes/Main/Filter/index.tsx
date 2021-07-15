@@ -6,11 +6,17 @@ import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
 import { useMetricContext } from '~/context/MetricProvider'
 
 function Filter() {
-  const { setUrlMetrics, setMetrics } = useMetricContext()
+  const { setUrlMetrics, setMetrics, urlMetrics } = useMetricContext()
 
   const setTimeRange = async (start: any, end: any) => {
     setUrlMetrics(await fetchMetricByURL(start, end))
     setMetrics(await fetchMetricByTimeRange(start, end))
+  }
+
+  const urls = () => {
+    return urlMetrics.map((url) => {
+      return url.URL
+    })
   }
 
   return (
@@ -20,7 +26,7 @@ function Filter() {
           <TimeRangeFilter setTimeRange={setTimeRange} />
         </Col>
         <Col md={12}>
-          <UrlFilter />
+          <UrlFilter urls={urls()} />
         </Col>
       </Row>
     </Card>

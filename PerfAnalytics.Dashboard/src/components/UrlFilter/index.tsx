@@ -4,30 +4,25 @@ import { Checkbox, Typography, Form } from 'antd'
 const { Title } = Typography
 const CheckboxGroup = Checkbox.Group
 
-const plainOptions = [
-  'https://hasantezcan.dev',
-  'https://hasantezcan.dev/about',
-  'https://hasantezcan.dev/blog'
-]
-const defaultCheckedList = ['Apple', 'Orange']
+const defaultCheckedList = ['https://hasantezcan.dev', 'Orange']
 
-// interface UrlFilterProps {
-//   options?: string[]
-// }
+interface UrlFilterProps {
+  urls: string[]
+}
 
-function UrlFilter() {
+function UrlFilter({ urls }: UrlFilterProps) {
   const [checkedList, setCheckedList] = useState(defaultCheckedList)
   const [indeterminate, setIndeterminate] = useState(true)
   const [checkAll, setCheckAll] = useState(false)
 
   const onChange = (list: any) => {
     setCheckedList(list)
-    setIndeterminate(!!list.length && list.length < plainOptions.length)
-    setCheckAll(list.length === plainOptions.length)
+    setIndeterminate(!!list.length && list.length < urls.length)
+    setCheckAll(list.length === urls.length)
   }
 
   const onCheckAllChange = (e: any) => {
-    setCheckedList(e.target.checked ? plainOptions : ['Apple'])
+    setCheckedList(e.target.checked ? urls : ['Apple'])
     setIndeterminate(false)
     setCheckAll(e.target.checked)
   }
@@ -36,7 +31,7 @@ function UrlFilter() {
     <Form>
       <Title level={3}>Select URL</Title>
 
-      <Form.Item labelCol={{span:6, offset:6}}>
+      <Form.Item labelCol={{ span: 6, offset: 6 }}>
         <Checkbox
           indeterminate={indeterminate}
           onChange={onCheckAllChange}
@@ -47,11 +42,7 @@ function UrlFilter() {
       </Form.Item>
 
       <Form.Item>
-        <CheckboxGroup
-          options={plainOptions}
-          value={checkedList}
-          onChange={onChange}
-        />
+        <CheckboxGroup options={urls} value={checkedList} onChange={onChange} />
       </Form.Item>
     </Form>
   )

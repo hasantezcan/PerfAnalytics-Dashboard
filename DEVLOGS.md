@@ -223,3 +223,11 @@ And this format name is [`ISO 8601`](https://en.wikipedia.org/wiki/ISO_8601#RFCs
 **Source :**
 
 > [How do I format a date as ISO 8601 in moment.js?](https://stackoverflow.com/questions/25725019/how-do-i-format-a-date-as-iso-8601-in-moment-js) 
+
+
+## Generating a color from a hash(string)
+
+> https://github.com/zenozeng/color-hash 
+  - Not worked 
+
+> https://stackoverflow.com/a/16348977/10694425

@@ -1,3 +1,12 @@
+interface MetricTypes {
+  TTFB: string
+  FCP: string
+  DomLoad: string
+  WindowLoad: string
+}
+
+type MetricType = keyof MetricTypes
+
 interface Metric {
   URL: string
   UserAgent: string
@@ -20,4 +29,9 @@ interface MetricByURL {
   WindowLoad: TimeValue
 }
 
-export type { Metric, MetricByURL, TimeValue }
+interface ChartMetric {
+  url: string
+  data: TimeValue[]
+}
+
+export type { Metric, MetricByURL, TimeValue, MetricType, ChartMetric }
