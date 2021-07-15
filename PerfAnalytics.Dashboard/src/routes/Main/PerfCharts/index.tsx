@@ -22,7 +22,7 @@ function PerfCharts() {
   }
 
   return (
-    <Row gutter={16}>
+    <Row gutter={[16, 16]}>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
         <LineChartCard title="TTFB" data={mapMetrics('TTFB')} />
       </Col>
