@@ -12,7 +12,7 @@ interface TimeValue {
   time: Date
   value: number
 }
-interface MetricbyURL {
+interface MetricByURL {
   URL: string
   TTFB: TimeValue
   FCP: TimeValue
@@ -20,4 +20,4 @@ interface MetricbyURL {
   WindowLoad: TimeValue
 }
 
-export type { Metric, MetricbyURL, TimeValue }
+export type { Metric, MetricByURL, TimeValue }
