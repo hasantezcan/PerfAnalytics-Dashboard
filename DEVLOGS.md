@@ -266,3 +266,11 @@ All projects inside in one repo! How can I handle that? Is that the proper way t
 - [Heroku Continuous Integration & Deployment with Docker [Hands-On Tutorial]](https://coralogix.com/blog/heroku-continuous-integration-deployment-with-docker-hands-on-tutorial/)
 
 - [How to Dockerize a Node app and deploy to Heroku](https://dev.to/pacheco/how-to-dockerize-a-node-app-and-deploy-to-heroku-3cch)
+## **`⁉️ ISSUE:`** reChart Multiline issue 
+When shown two lines the graph is dividing into two! And shows empty half of it!
+
+- [Exploring Recharts: different ways of accessing data](https://gaurav5430.medium.com/exploring-recharts-different-ways-of-accessing-data-d9d6f2caf0b8)
+- [two lines with different data sources](https://github.com/recharts/recharts/issues/1167)
+- [recharts cannot draw two independent lines](https://stackoverflow.com/questions/62905243/recharts-cannot-draw-two-independent-lines)
+
+ **`✅ SOLVED:`** Solved with this resource: https://github.com/recharts/recharts/issues/956

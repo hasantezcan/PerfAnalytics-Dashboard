@@ -16,6 +16,8 @@ interface MetricContextModel {
   setMetrics: Dispatch<SetStateAction<Metric[]>>
   urlMetrics: MetricByURL[]
   setUrlMetrics: Dispatch<SetStateAction<MetricByURL[]>>
+  selectedUrls: string[]
+  setSelectedUrls: Dispatch<SetStateAction<string[]>>
 }
 
 const MetricContext = createContext<MetricContextModel>(
@@ -24,6 +26,7 @@ const MetricContext = createContext<MetricContextModel>(
 function MetricProvider({ children }: PropsWithChildren<any>) {
   const [metrics, setMetrics] = useState<Metric[]>([])
   const [urlMetrics, setUrlMetrics] = useState<MetricByURL[]>([])
+  const [selectedUrls, setSelectedUrls] = useState<string[]>([])
 
   useEffect(() => {
     const initializeMetrics = async () => {
@@ -38,7 +41,9 @@ function MetricProvider({ children }: PropsWithChildren<any>) {
     metrics,
     setMetrics,
     urlMetrics,
-    setUrlMetrics
+    setUrlMetrics,
+    selectedUrls,
+    setSelectedUrls
   }
 
   return (

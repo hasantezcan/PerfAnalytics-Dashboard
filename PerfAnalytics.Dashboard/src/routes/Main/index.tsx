@@ -1,24 +1,27 @@
-import { Button, Typography } from 'antd'
-
-// import { useMetricContext } from '~/context/MetricProvider'
+import { Row, Col, Typography } from 'antd'
 
 import BaseLayout from '~/layouts/BaseLayout'
-import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
 import PerfCharts from './PerfCharts'
 import Filter from './Filter'
 
 function Main() {
-  // const {} = useMetricContext()
-
   const { Title } = Typography
 
   return (
     <BaseLayout>
-      <Title>PerfAnalytics.Dashboard</Title>
-      <Filter />
-      <PerfCharts />
-      <Button onClick={() => fetchMetricByTimeRange()}>getMetrics</Button>
-      <Button onClick={() => fetchMetricByURL()}>getURLMetrics</Button>
+      <Row gutter={[16, 16]}>
+        <Col span={24}>
+          <Title>PerfAnalytics Dashboard</Title>
+        </Col>
+
+        <Col span={24}>
+          <Filter />
+        </Col>
+
+        <Col span={24}>
+          <PerfCharts />
+        </Col>
+      </Row>
     </BaseLayout>
   )
 }
