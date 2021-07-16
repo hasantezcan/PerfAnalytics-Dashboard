@@ -11,6 +11,7 @@ import {
 import { ChartMetric } from '~/models/Metric'
 import { stringToColor } from '~/util/stringToColor'
 import { useMetricContext } from '~/context/MetricProvider'
+import moment from 'moment'
 interface LineChartCardProps {
   title?: string
   data?: any
@@ -18,6 +19,8 @@ interface LineChartCardProps {
 
 function LineChartCard({ title = 'TTFB', data }: LineChartCardProps) {
   const { selectedUrls } = useMetricContext()
+
+  console.log(`data:::`, data)
 
   return (
     <Card title={title}>
@@ -39,7 +42,13 @@ function LineChartCard({ title = 'TTFB', data }: LineChartCardProps) {
             }
           })}
           <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
-          <XAxis dataKey="time" name="Time" />
+          <XAxis
+            domain={['auto', 'auto']}
+            dataKey="time"
+            name="Time"
+            type="number"
+            tickFormatter={(unixTime) => moment(unixTime).format('HH:mm')}
+          />
           <YAxis dataKey="value" type="number" />
           <Tooltip />
         </LineChart>

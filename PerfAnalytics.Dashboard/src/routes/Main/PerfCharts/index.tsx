@@ -15,7 +15,7 @@ function PerfCharts() {
         data:
           // @ts-ignore: Unreachable code error
           url[type].map((i: TimeValue) => {
-            return { value: i.value, time: moment(i.time).format('HH:mm') }
+            return { value: i.value, time: new Date(i.time).getTime() }
           })
       }
     })

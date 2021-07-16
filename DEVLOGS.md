@@ -238,3 +238,5 @@ When shown two lines the graph is dividing into two! And shows empty half of it!
 - [Exploring Recharts: different ways of accessing data](https://gaurav5430.medium.com/exploring-recharts-different-ways-of-accessing-data-d9d6f2caf0b8)
 - [two lines with different data sources](https://github.com/recharts/recharts/issues/1167)
 - [recharts cannot draw two independent lines](https://stackoverflow.com/questions/62905243/recharts-cannot-draw-two-independent-lines)
+
+ **`✅ SOLVED:`** Solved with this resource: https://github.com/recharts/recharts/issues/956
