@@ -13,7 +13,7 @@ function BaseLayout({ children }: PropsWithChildren<BaseLayoutProps>) {
         <Text type="danger">PerfAnalytics.Dashboard</Text>
       </Header>
       <Content>
-        <Row justify={'center'} >
+        <Row justify={'center'} style={{ paddingTop: 25 }}>
           <Col lg={{ span: 12 }}>{children}</Col>
         </Row>
       </Content>

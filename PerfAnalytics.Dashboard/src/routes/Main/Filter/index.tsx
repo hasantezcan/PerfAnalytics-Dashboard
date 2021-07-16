@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Row, Col, Card } from 'antd'
 
 import TimeRangeFilter from '@components/TimeRangeFilter/index'
@@ -6,18 +7,27 @@ import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
 import { useMetricContext } from '~/context/MetricProvider'
 
 function Filter() {
-  const { setUrlMetrics, setMetrics, urlMetrics } = useMetricContext()
+  const {
+    setUrlMetrics,
+    setMetrics,
+    urlMetrics,
+    setSelectedUrls,
+    selectedUrls
+  } = useMetricContext()
+
+  const urls = urlMetrics.map((url) => url.URL)
 
   const setTimeRange = async (start: any, end: any) => {
-    setUrlMetrics(await fetchMetricByURL(start, end))
-    setMetrics(await fetchMetricByTimeRange(start, end))
+    const metricUrl = await fetchMetricByURL(start, end)
+    const metricByTimeRange = await fetchMetricByTimeRange(start, end)
+    setUrlMetrics(metricUrl)
+    setMetrics(metricByTimeRange)
   }
 
-  const urls = () => {
-    return urlMetrics.map((url) => {
-      return url.URL
-    })
-  }
+  useEffect(() => {
+    const initialUrls = urls
+    setSelectedUrls(initialUrls)
+  }, [urlMetrics])
 
   return (
     <Card>
@@ -26,7 +36,11 @@ function Filter() {
           <TimeRangeFilter setTimeRange={setTimeRange} />
         </Col>
         <Col md={12}>
-          <UrlFilter urls={urls()} />
+          <UrlFilter
+            urls={urls}
+            onSelect={setSelectedUrls}
+            selectedUrls={selectedUrls}
+          />
         </Col>
       </Row>
     </Card>
