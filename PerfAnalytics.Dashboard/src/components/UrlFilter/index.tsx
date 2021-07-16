@@ -1,35 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Checkbox, Typography, Form } from 'antd'
 
 const { Title } = Typography
 const CheckboxGroup = Checkbox.Group
-const defaultCheckedList = ['https://hasantezcan.dev', 'Orange']
 
 interface UrlFilterProps {
   urls: string[]
-  setSelectedUrls: (e: string[]) => void
+  onSelect: (urls: string[]) => void
+  selectedUrls: string[]
 }
 
-function UrlFilter({ urls, setSelectedUrls }: UrlFilterProps) {
-  const [checkedList, setCheckedList] = useState(defaultCheckedList)
-  const [indeterminate, setIndeterminate] = useState(true)
-  const [checkAll, setCheckAll] = useState(false)
-
+function UrlFilter({ urls, onSelect, selectedUrls }: UrlFilterProps) {
   const onChange = (list: any) => {
-    setCheckedList(list)
-    setIndeterminate(!!list.length && list.length < urls.length)
-    setCheckAll(list.length === urls.length)
+    onSelect(list)
   }
 
   const onCheckAllChange = (e: any) => {
-    setCheckedList(e.target.checked ? urls : ['Apple'])
-    setIndeterminate(false)
-    setCheckAll(e.target.checked)
+    onSelect(e.target.checked ? urls : [])
   }
-
-  useEffect(() => {
-    setSelectedUrls(checkedList)
-  }, [checkedList])
 
   return (
     <Form>
@@ -37,16 +25,22 @@ function UrlFilter({ urls, setSelectedUrls }: UrlFilterProps) {
 
       <Form.Item labelCol={{ span: 6, offset: 6 }}>
         <Checkbox
-          indeterminate={indeterminate}
+          indeterminate={
+            selectedUrls.length > 0 && selectedUrls.length !== urls.length
+          }
           onChange={onCheckAllChange}
-          checked={checkAll}
+          checked={selectedUrls.length > 0}
         >
           Check all
         </Checkbox>
       </Form.Item>
 
       <Form.Item>
-        <CheckboxGroup options={urls} value={checkedList} onChange={onChange} />
+        <CheckboxGroup
+          options={urls}
+          value={selectedUrls}
+          onChange={onChange}
+        />
       </Form.Item>
     </Form>
   )
