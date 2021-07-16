@@ -6,11 +6,9 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install 
+RUN yarn install
 
 COPY . .
-
-RUN yarn build
 
 ENV NODE_ENV=production
 
