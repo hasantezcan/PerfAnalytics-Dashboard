@@ -45,7 +45,7 @@ function LineChartWidget({ data }: LineChartWidgetProps) {
           tickFormatter={(unixTime) => moment(unixTime).format('HH:mm')}
         />
         <YAxis dataKey="value" type="number" />
-        <Tooltip />
+        <Tooltip labelFormatter={(name: any) => moment(name).format('HH:mm')} />
       </LineChart>
     </ResponsiveContainer>
   )
