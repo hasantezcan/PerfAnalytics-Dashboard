@@ -274,3 +274,9 @@ When shown two lines the graph is dividing into two! And shows empty half of it!
 - [recharts cannot draw two independent lines](https://stackoverflow.com/questions/62905243/recharts-cannot-draw-two-independent-lines)
 
  **`✅ SOLVED:`** Solved with this resource: https://github.com/recharts/recharts/issues/956
+
+--- 
+
+## 16 July 2021
+
+Update windowLoad time measure method with [this approach.](https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing/#loading)

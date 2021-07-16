@@ -3,11 +3,6 @@ const convertToSec = (milliseconds) => {
   return milliseconds / 1000;
 };
 
-const getNavigationPerf = async () => {
-  const perfEntries = await performance.getEntriesByType("navigation");
-  return perfEntries[0];
-};
-
 // Measure performance metrics
 const getFCP = () => {
   if (window) {
@@ -31,56 +26,49 @@ const getDOMLoad = (perf) => {
 };
 
 const getWindowLoad = (perf) => {
-  // TODO Find performance API v2 equal
-  // TODO CHECK HERE AGAIN!
-  const windowLoad = new Date().valueOf() - performance.timing.navigationStart;
+  const windowLoad = perf.loadEventStart - perf.loadEventEnd;
   return convertToSec(windowLoad);
 };
 
-// Network timings for ------------------------------------------------------
 const getEntries = () => {
-  return performance.getEntriesByType("resource");
+  const entries = performance.getEntriesByType("resource");
+
+  return entries.map((entry) => {
+    return {
+      name: entry.name,
+      initiatorType: entry.initiatorType,
+      responseEnd: convertToSec(entry.responseEnd),
+      transferSize: entry.transferSize,
+    };
+  });
 };
 
-const getScripts = (entries) =>
-  entries.filter((entry) => entry.initiatorType === "script");
-
-const getImages = (entries) =>
-  entries.filter((entry) => entry.initiatorType === "img");
-
-const getStyles = (entries) =>
-  // TODO "link" contains fonts and stylesheets
-  // TODO Handle those value separately
-  entries.filter((entry) => entry.initiatorType === "link");
-
-// ---------------------------------------------------------------------------
+// ----------------------------------------
 
 async function logMetrics() {
-  console.table(await collectMetrics());
+  const metrics = await collectMetrics();
+  const metricsFiles = metrics.entries;
+  await delete metrics.entries;
+
+  console.table(metrics);
+  console.table(metricsFiles);
 }
 
 async function init() {
-  const test = await collectMetrics();
-
-  // ENTRIES --------------------------------------------------
-  // |
-  // const entries = getEntries();
-  // console.log(`Entries :`, entries);
-  // console.log(`Scripts(entries) :`, getScripts(entries));
-  // console.log(`Images(entries) :`, getImages(entries));
-  // console.log(`Styles(entries) :`, getStyles(entries));
+  const metrics = await collectMetrics();
 
   fetch("http://localhost:6060/api/metrics", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(test),
+    body: JSON.stringify(metrics),
   }).then(console.log);
 }
 
 async function collectMetrics() {
-  const perf = await getNavigationPerf();
+  const perf = performance.getEntriesByType("navigation")[0];
+
   return {
     UserAgent: navigator.userAgent,
     URL: window.location.href,
@@ -88,6 +76,7 @@ async function collectMetrics() {
     DomLoad: await getDOMLoad(perf),
     WindowLoad: await getWindowLoad(perf),
     FCP: await getFCP(),
+    entries: await getEntries(),
   };
 }
 
