@@ -1,0 +1,21 @@
+name: "Deploy APP to Heroku"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build, Push and Deploy to Heroku
+        id: heroku
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
+        with:
+          email: "hasantezcan77+dummy@gmail.com"
+          api_key: "1fb9d9e6-6585-4772-bddd-3f13336fe007"
+          docker_compose_file: "./docker-compose.heroku.yml"
+          heroku_apps: '[{"imagename":"ht-perfanalytics/client","appname":"client","apptype":"web"},{"imagename":"ht-perfanalytics/server","appname":"server","apptype":"worker"}]'

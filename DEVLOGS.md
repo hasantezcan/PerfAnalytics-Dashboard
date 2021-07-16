@@ -232,6 +232,40 @@ And this format name is [`ISO 8601`](https://en.wikipedia.org/wiki/ISO_8601#RFCs
 
 > https://stackoverflow.com/a/16348977/10694425
 
+
+## Setup a Nodejs TypeScript build settings 
+> https://khalilstemmler.com/blogs/typescript/node-starter-project/#Create-a-tsconfigjson
+
+## Serve PerfAnalytics JS from API
+- [How to Serve Static Files using Express](https://javascript.plainenglish.io/expressjs-serving-static-files-e0efdda3731c)
+
+
+## 🤔 All project inside in one repository 
+
+```bash
+TrendyolCase-HasanTezcan (REPO)
+- PerfAnalytics.API
+- PerfAnalytics.Dashboard
+- PerfAnalytics.Js
+```
+
+All projects inside in one repo! How can I handle that? Is that the proper way to work like that? While I developing this application sometimes I thought "I need a fresh new paper" just like a quiz in university. :)
+
+- [Procfile ?](https://devcenter.heroku.com/articles/procfile)
+    > https://stackoverflow.com/a/37283426/10694425
+
+## Github Actions
+
+- [Deploying to Heroku from GitHub Actions](https://dev.to/heroku/deploying-to-heroku-from-github-actions-29ej)
+- 👍 [Deploying Node.js App to Heroku using Github Actions](https://dev.to/nipeshkc7/deploying-node-js-app-to-heroku-using-github-actions-3k7g)
+
+- prepared actions? 
+  - https://github.com/marketplace/actions/deploy-to-heroku
+  - https://github.com/AkhileshNS/heroku-deploy
+
+- [Heroku Continuous Integration & Deployment with Docker [Hands-On Tutorial]](https://coralogix.com/blog/heroku-continuous-integration-deployment-with-docker-hands-on-tutorial/)
+
+- [How to Dockerize a Node app and deploy to Heroku](https://dev.to/pacheco/how-to-dockerize-a-node-app-and-deploy-to-heroku-3cch)
 ## **`⁉️ ISSUE:`** reChart Multiline issue 
 When shown two lines the graph is dividing into two! And shows empty half of it!
 
