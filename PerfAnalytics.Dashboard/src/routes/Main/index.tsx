@@ -10,15 +10,15 @@ function Main() {
   return (
     <BaseLayout>
       <Row gutter={[16, 16]}>
-        <Col>
+        <Col span={24}>
           <Title>PerfAnalytics Dashboard</Title>
         </Col>
 
-        <Col>
+        <Col span={24}>
           <Filter />
         </Col>
 
-        <Col>
+        <Col span={24}>
           <PerfCharts />
         </Col>
       </Row>

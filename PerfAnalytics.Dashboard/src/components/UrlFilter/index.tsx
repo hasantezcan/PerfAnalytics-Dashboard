@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { Checkbox, Typography, Form } from 'antd'
+import { getClippedText } from '~/util/text.utils'
 
 const { Title } = Typography
 const CheckboxGroup = Checkbox.Group
@@ -19,6 +19,11 @@ function UrlFilter({ urls, onSelect, selectedUrls }: UrlFilterProps) {
     onSelect(e.target.checked ? urls : [])
   }
 
+  const urlOptions = urls.map((url) => ({
+    label: getClippedText(url, 40),
+    value: url
+  }))
+
   return (
     <Form>
       <Title level={3}>Select URL</Title>
@@ -37,7 +42,7 @@ function UrlFilter({ urls, onSelect, selectedUrls }: UrlFilterProps) {
 
       <Form.Item>
         <CheckboxGroup
-          options={urls}
+          options={urlOptions}
           value={selectedUrls}
           onChange={onChange}
         />

@@ -1,12 +1,12 @@
-import { Row, Col } from 'antd'
-import moment from 'moment'
+import { Row, Col, Card } from 'antd'
+import { Empty } from 'antd'
 
-import LineChartCard from '@components/LineChartCard'
+import LineChartWidget from '@components/LineChartWidget'
 import { useMetricContext } from '~/context/MetricProvider'
 import { MetricType, TimeValue } from '~/models/Metric'
 
 function PerfCharts() {
-  const { urlMetrics } = useMetricContext()
+  const { urlMetrics, selectedUrls } = useMetricContext()
 
   const mapMetrics = (type: MetricType) => {
     return urlMetrics.map((url) => {
@@ -24,16 +24,40 @@ function PerfCharts() {
   return (
     <Row gutter={[16, 16]}>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <LineChartCard title="TTFB" data={mapMetrics('TTFB')} />
+        <Card title="TTFB">
+          {selectedUrls.length > 0 ? (
+            <LineChartWidget data={mapMetrics('TTFB')} />
+          ) : (
+            <Empty />
+          )}
+        </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <LineChartCard title="FCP" data={mapMetrics('FCP')} />
+        <Card title="TTFB">
+          {selectedUrls.length > 0 ? (
+            <LineChartWidget data={mapMetrics('FCP')} />
+          ) : (
+            <Empty />
+          )}
+        </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <LineChartCard title="DomLoad" data={mapMetrics('DomLoad')} />
+        <Card title="TTFB">
+          {selectedUrls.length > 0 ? (
+            <LineChartWidget data={mapMetrics('DomLoad')} />
+          ) : (
+            <Empty />
+          )}
+        </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <LineChartCard title="WindowLoad" data={mapMetrics('WindowLoad')} />
+        <Card title="TTFB">
+          {selectedUrls.length > 0 ? (
+            <LineChartWidget data={mapMetrics('WindowLoad')} />
+          ) : (
+            <Empty />
+          )}
+        </Card>
       </Col>
     </Row>
   )
