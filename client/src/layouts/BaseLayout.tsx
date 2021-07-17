@@ -1,23 +1,28 @@
 import { PropsWithChildren } from 'react'
-import { Layout, Row, Col, Typography } from 'antd'
+import { Layout, Row, Col } from 'antd'
+import classNames from 'classnames/bind'
+import styles from './styles.module.scss'
 
-const { Header, Footer, Content } = Layout
-const { Text } = Typography
+const { Footer, Content } = Layout
+const cx = classNames.bind(styles)
 
 interface BaseLayoutProps {}
 
 function BaseLayout({ children }: PropsWithChildren<BaseLayoutProps>) {
   return (
-    <Layout>
-      <Header>
-        <Text type="danger">PerfAnalytics.Dashboard</Text>
-      </Header>
+    <Layout className={cx('base-layout')}>
       <Content>
         <Row justify={'center'} style={{ paddingTop: 25 }}>
           <Col lg={{ span: 18 }}>{children}</Col>
         </Row>
       </Content>
-      <Footer>Footer</Footer>
+      <Footer>
+        <Row justify={'center'}>
+          <p>
+            Made by <a href="https://github.com/hasantezcan">@hasantezcan</a>
+          </p>
+        </Row>
+      </Footer>
     </Layout>
   )
 }

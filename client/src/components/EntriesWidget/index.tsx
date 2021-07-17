@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Table, Tooltip } from 'antd'
+import { Table, Tooltip, Typography } from 'antd'
 import moment from 'moment'
 
 import { getClippedText } from '~/util/text.utils'
@@ -7,6 +7,7 @@ import { Metric } from '~/models/Metric'
 
 import './style.css'
 
+const { Title } = Typography
 interface EntriesWidgetProps {
   metrics: Metric[]
 }
@@ -140,16 +141,19 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
   ]
 
   return (
-    <Table
-      rowKey="_id"
-      className="table-striped-rows"
-      columns={columns}
-      expandable={{ expandedRowRender }}
-      dataSource={metrics}
-      expandedRowKeys={expandedRowKeys}
-      onExpand={onTableRowExpand}
-      scroll={{ y: 400, x: 1024 }}
-    />
+    <>
+      <Title level={2}>Metrics and Entries</Title>
+      <Table
+        rowKey="_id"
+        className="table-striped-rows"
+        columns={columns}
+        expandable={{ expandedRowRender }}
+        dataSource={metrics}
+        expandedRowKeys={expandedRowKeys}
+        onExpand={onTableRowExpand}
+        scroll={{ y: 400, x: 1024 }}
+      />
+    </>
   )
 }
 

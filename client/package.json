@@ -12,17 +12,21 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "antd": "^4.16.6",
+    "axios": "^0.21.1",
+    "classnames": "^2.3.1",
     "craco-alias": "^3.0.1",
     "craco-less": "^1.18.0",
-    "node-sass": "^6.0.1",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "recharts": "^2.0.9",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1",
-    "axios": "^0.21.1"
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.0",
+    "sass-loader": "^11.1.1"
   },
   "scripts": {
     "start": "craco start",
