@@ -16,6 +16,6 @@ jobs:
         uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
         with:
           email: "hasantezcan77+dummy@gmail.com"
-          api_key: "1fb9d9e6-6585-4772-bddd-3f13336fe007"
+          api_key: "0b4dc590-65f8-4ddc-91a1-4766190ee4fa"
           docker_compose_file: "./docker-compose.heroku.yml"
           heroku_apps: '[{"imagename":"ht-perfanalytics/client","appname":"ht-perfanalytics/client","apptype":"web"},{"imagename":"ht-perfanalytics/server","appname":"ht-perfanalytics/server","apptype":"worker"}]'
