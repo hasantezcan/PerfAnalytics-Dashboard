@@ -5,6 +5,6 @@
   background-color: #f1f1f1;
 }
 
-thead[class*='ant-table-thead'] th {
+thead > tr > th {
   border-bottom: solid 1px #1890ff !important;
 }
