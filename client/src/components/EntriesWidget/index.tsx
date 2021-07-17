@@ -109,34 +109,43 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
       dataIndex: 'FCP',
       key: 'FCP',
       ellipsis: true,
-      render: (FCP: any) => getClippedText(FCP.toString(), 9)
+      render: (FCP: any) => getClippedText(FCP.toString(), 9),
+      sorter: (a: any, b: any) => a.FCP - b.FCP
     },
     {
       title: 'TTFB',
       dataIndex: 'TTFB',
       key: 'TTFB',
       ellipsis: true,
-      render: (TTFB: any) => getClippedText(TTFB.toString(), 9)
+      render: (TTFB: any) => getClippedText(TTFB.toString(), 9),
+      sorter: (a: any, b: any) => a.TTFB - b.TTFB
     },
     {
       title: 'DomLoad',
       dataIndex: 'DomLoad',
       key: 'DomLoad',
       ellipsis: true,
-      render: (DomLoad: any) => getClippedText(DomLoad.toString(), 9)
+      render: (DomLoad: any) => getClippedText(DomLoad.toString(), 9),
+      sorter: (a: any, b: any) => a.DomLoad - b.DomLoad
     },
     {
       title: 'WindowLoad',
       dataIndex: 'WindowLoad',
       key: 'WindowLoad',
       ellipsis: true,
-      render: (WindowLoad: any) => getClippedText(WindowLoad.toString(), 9)
+      render: (WindowLoad: any) => getClippedText(WindowLoad.toString(), 9),
+      sorter: (a: any, b: any) => a.WindowLoad - b.WindowLoad
     },
     {
       title: 'Time',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: (createdAt: any) => moment(createdAt).format('HH:mm:ss')
+      render: (createdAt: any) => moment(createdAt).format('HH:mm:ss'),
+      sorter: (a: any, b: any) => {
+        const timestampA = moment(a.createdAt).format('X')
+        const timestampB = moment(b.createdAt).format('X')
+        return parseInt(timestampA) - parseInt(timestampB)
+      }
     }
   ]
 
