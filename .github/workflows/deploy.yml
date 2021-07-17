@@ -17,5 +17,5 @@ jobs:
         with:
           email: "hasantezcan77+dummy@gmail.com"
           api_key: "0b4dc590-65f8-4ddc-91a1-4766190ee4fa"
-          docker_compose_file: "./docker-compose.heroku.yml"
+          docker_compose_file: "./docker-compose.yml"
           heroku_apps: '[{"imagename":"ht-perfanalytics/client","appname":"ht-perfanalytics/client","apptype":"web"},{"imagename":"ht-perfanalytics/server","appname":"ht-perfanalytics/server","apptype":"worker"}]'
