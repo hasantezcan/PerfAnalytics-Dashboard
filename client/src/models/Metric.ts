@@ -7,6 +7,13 @@ interface MetricTypes {
 
 type MetricType = keyof MetricTypes
 
+export interface Entry {
+  name: string;
+  initiatorType: string;
+  responseEnd: number;
+  transferSize: number;
+}
+
 interface Metric {
   URL: string
   UserAgent: string
@@ -14,6 +21,7 @@ interface Metric {
   FCP: number
   DomLoad: number
   WindowLoad: number
+  Entries: Entry[]
   createdAt: Date
 }
 

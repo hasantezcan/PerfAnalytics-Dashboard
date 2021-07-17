@@ -23,7 +23,6 @@ async function createMetricHandler(req: Request, res: Response) {
   }
 }
 
-// TODO handle any types!
 async function getMetricsHandler(req: Request, res: Response) {
   const timeRange = calculateTimeRange(req);
 
@@ -34,7 +33,7 @@ async function getMetricsHandler(req: Request, res: Response) {
 
     if (!metrics || metrics.toString() === "") {
       log.error("NOT FOUND");
-      return res.sendStatus(404);
+      return res.send(metrics);
     }
     return res.send(metrics);
   } catch (error) {
@@ -53,7 +52,7 @@ async function getMetricsByURLHandler(req: Request, res: Response) {
 
     if (!metrics || metrics.toString() === "") {
       log.error("NOT FOUND");
-      return res.sendStatus(404);
+     return res.send(metrics);
     }
     return res.send(metrics);
   } catch (error) {

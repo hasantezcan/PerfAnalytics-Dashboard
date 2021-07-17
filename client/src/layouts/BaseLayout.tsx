@@ -14,7 +14,7 @@ function BaseLayout({ children }: PropsWithChildren<BaseLayoutProps>) {
       </Header>
       <Content>
         <Row justify={'center'} style={{ paddingTop: 25 }}>
-          <Col lg={{ span: 12 }}>{children}</Col>
+          <Col lg={{ span: 18 }}>{children}</Col>
         </Row>
       </Content>
       <Footer>Footer</Footer>

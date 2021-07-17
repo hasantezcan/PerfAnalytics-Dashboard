@@ -280,3 +280,10 @@ When shown two lines the graph is dividing into two! And shows empty half of it!
 ## 16 July 2021
 
 Update windowLoad time measure method with [this approach.](https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing/#loading)
+
+
+## 17 July 2021 
+
+-  [Mongoose Mixed schema types](https://attacomsian.com/blog/mongoose-schema-types#mixed)
+-  [Each record in table should have a unique key prop,or set rowKey to an unique primary key.](https://github.com/ant-design/ant-design/issues/7623#issuecomment-355881099)
+-  [Support striped rows in tables](https://github.com/ant-design/ant-design/issues/8393)

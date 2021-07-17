@@ -33,7 +33,7 @@ function PerfCharts() {
         </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <Card title="TTFB">
+        <Card title="FCP">
           {selectedUrls.length > 0 ? (
             <LineChartWidget data={mapMetrics('FCP')} />
           ) : (
@@ -42,7 +42,7 @@ function PerfCharts() {
         </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <Card title="TTFB">
+        <Card title="DomLoad">
           {selectedUrls.length > 0 ? (
             <LineChartWidget data={mapMetrics('DomLoad')} />
           ) : (
@@ -51,7 +51,7 @@ function PerfCharts() {
         </Card>
       </Col>
       <Col xs={{ span: 24 }} md={{ span: 12 }}>
-        <Card title="TTFB">
+        <Card title="WindowLoad">
           {selectedUrls.length > 0 ? (
             <LineChartWidget data={mapMetrics('WindowLoad')} />
           ) : (

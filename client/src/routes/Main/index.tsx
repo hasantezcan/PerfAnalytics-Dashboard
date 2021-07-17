@@ -3,6 +3,7 @@ import { Row, Col, Typography } from 'antd'
 import BaseLayout from '~/layouts/BaseLayout'
 import PerfCharts from './PerfCharts'
 import Filter from './Filter'
+import Entries from './Entries/index';
 
 function Main() {
   const { Title } = Typography
@@ -20,6 +21,10 @@ function Main() {
 
         <Col span={24}>
           <PerfCharts />
+        </Col>
+
+        <Col span={24}>
+          <Entries />
         </Col>
       </Row>
     </BaseLayout>

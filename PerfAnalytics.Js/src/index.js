@@ -47,8 +47,8 @@ const getEntries = () => {
 
 async function logMetrics() {
   const metrics = await collectMetrics();
-  const metricsFiles = metrics.entries;
-  await delete metrics.entries;
+  const metricsFiles = metrics.Entries;
+  await delete metrics.Entries;
 
   console.table(metrics);
   console.table(metricsFiles);
@@ -76,7 +76,7 @@ async function collectMetrics() {
     DomLoad: await getDOMLoad(perf),
     WindowLoad: await getWindowLoad(perf),
     FCP: await getFCP(),
-    entries: await getEntries(),
+    Entries: await getEntries(),
   };
 }
 
