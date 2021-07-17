@@ -5,7 +5,7 @@ import { Request } from "express";
 function calculateTimeRange(req: Request) {
   const start = req?.query.start
     ? req?.query.start
-    : moment().subtract(1, "hours").toISOString();
+    : moment().subtract(30, "minutes").toISOString();
 
   const end = req?.query.end 
     ? req?.query.end 

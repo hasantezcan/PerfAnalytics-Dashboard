@@ -1,6 +1,6 @@
-import moment from 'moment'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { DatePicker, TimePicker, Button, Form, Typography } from 'antd'
+import moment from 'moment'
 
 const { Title } = Typography
 
@@ -9,25 +9,18 @@ interface TimeRangeFilterProps {
 }
 
 function TimeRangeFilter({ setTimeRange }: TimeRangeFilterProps) {
-  const [date, setDate] = useState('')
-  const [startTime, setStartTime] = useState('')
-  const [endTime, setEndTime] = useState('')
+  const [date, setDate] = useState(moment().format('YYYY-MM-DD'))
+  const [startTime, setStartTime] = useState(
+    moment().subtract(30, 'minutes').format('HH:mm:ss')
+  )
+  const [endTime, setEndTime] = useState(moment().format('HH:mm:ss'))
 
-  const handleTimeRange = (event: any) => {
+  const handleTimeRange = () => {
     const start = moment(`${date} ${startTime}`).toISOString()
     const end = moment(`${date} ${endTime}`).toISOString()
 
-    console.log('timestap start :', start)
-    console.log('timestap end :', end)
-
     setTimeRange(start, end)
   }
-
-  useEffect(() => {
-    console.log(`date: `, date)
-    console.log(`startTime: `, startTime)
-    console.log(`endTime: `, endTime)
-  }, [date, startTime, endTime])
 
   return (
     <Form>
