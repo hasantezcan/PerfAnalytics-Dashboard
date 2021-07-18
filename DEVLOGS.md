@@ -296,3 +296,6 @@ I move subprojects to separate repositories created by mine. In the main reposit
 I created 3 repositories for API, Web Client, and JS package with my whole commit history.
 
 After that, every single sub-project will maintain from its own repository.
+
+### Deploying a React App Using GitHub Pages and GitHub Actions
+> https://codeburst.io/deploying-a-react-app-using-github-pages-and-github-actions-7fc14d380796
