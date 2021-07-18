@@ -1,21 +1,57 @@
-name: "Deploy APP to Heroku"
+name: Build & deploy
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build, Push and Deploy to Heroku
-        id: heroku
-        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
+      - name: Install Node.js
+        uses: actions/setup-node@v1
         with:
-          email: "hasantezcan77+dummy@gmail.com"
-          api_key: "0b4dc590-65f8-4ddc-91a1-4766190ee4fa"
-          docker_compose_file: "./docker-compose.yml"
-          heroku_apps: '[{"imagename":"ht-perfanalytics/client","appname":"ht-perfanalytics/client","apptype":"web"},{"imagename":"ht-perfanalytics/server","appname":"ht-perfanalytics/server","apptype":"worker"}]'
+          node-version: 13.x
+
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./build
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./build
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build

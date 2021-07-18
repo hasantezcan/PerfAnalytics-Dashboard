@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Table, Tooltip, Typography } from 'antd'
+import { Table, Typography } from 'antd'
 import moment from 'moment'
 
 import { getClippedText } from '~/util/text.utils'
@@ -37,7 +37,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
           showTitle: false
         },
         render: (name: any) => (
-          <a href={name} target="_blank">
+          <a href={name} target="_blank" rel="noreferrer">
             {getClippedText(name, 50)}
           </a>
         )
@@ -86,7 +86,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
         showTitle: false
       },
       render: (URL: any) => (
-        <a href={URL} target="_blank">
+        <a href={URL} target="_blank" rel="noreferrer">
           {getClippedText(URL, 65)}
         </a>
       ),
