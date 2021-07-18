@@ -287,3 +287,12 @@ Update windowLoad time measure method with [this approach.](https://developers.g
 -  [Mongoose Mixed schema types](https://attacomsian.com/blog/mongoose-schema-types#mixed)
 -  [Each record in table should have a unique key prop,or set rowKey to an unique primary key.](https://github.com/ant-design/ant-design/issues/7623#issuecomment-355881099)
 -  [Support striped rows in tables](https://github.com/ant-design/ant-design/issues/8393)
+
+
+## 18 July 2021 
+
+I move subprojects to separate repositories created by mine. In the main repository given by Trendyol, I don't have any access to add secret keys so I cant build GitHub actions in a proper way. 
+
+I created 3 repositories for API, Web Client, and JS package with my whole commit history.
+
+After that, every single sub-project will maintain from its own repository.
