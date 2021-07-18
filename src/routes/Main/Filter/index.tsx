@@ -25,8 +25,8 @@ function Filter() {
   }
 
   useEffect(() => {
-    const initialUrls = urls
-    setSelectedUrls(initialUrls)
+    setSelectedUrls(urls)
+    // eslint-disable-next-line
   }, [urlMetrics])
 
   return (

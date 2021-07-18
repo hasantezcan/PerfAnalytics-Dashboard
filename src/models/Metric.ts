@@ -7,13 +7,6 @@ interface MetricTypes {
 
 type MetricType = keyof MetricTypes
 
-export interface Entry {
-  name: string;
-  initiatorType: string;
-  responseEnd: number;
-  transferSize: number;
-}
-
 interface Metric {
   URL: string
   UserAgent: string
@@ -26,20 +19,39 @@ interface Metric {
 }
 
 interface TimeValue {
-  time: Date
   value: number
+  time: Date
 }
 interface MetricByURL {
   URL: string
-  TTFB: TimeValue
-  FCP: TimeValue
-  DomLoad: TimeValue
-  WindowLoad: TimeValue
+  TTFB: TimeValue[]
+  FCP: TimeValue[]
+  DomLoad: TimeValue[]
+  WindowLoad: TimeValue[]
+}
+
+interface TimeStampValue {
+  value: number
+  time: number
 }
 
 interface ChartMetric {
   url: string
-  data: TimeValue[]
+  data: TimeStampValue[]
 }
 
-export type { Metric, MetricByURL, TimeValue, MetricType, ChartMetric }
+export interface Entry {
+  name: string
+  initiatorType: string
+  responseEnd: number
+  transferSize: number
+}
+
+export type {
+  Metric,
+  MetricByURL,
+  TimeValue,
+  MetricType,
+  ChartMetric,
+  TimeStampValue
+}

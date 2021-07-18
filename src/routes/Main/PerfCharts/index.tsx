@@ -3,23 +3,21 @@ import { Empty } from 'antd'
 
 import LineChartWidget from '@components/LineChartWidget'
 import { useMetricContext } from '~/context/MetricProvider'
-import { MetricType, TimeValue } from '~/models/Metric'
+import { ChartMetric, MetricType, TimeStampValue } from '~/models/Metric'
 
 function PerfCharts() {
   const { urlMetrics, selectedUrls } = useMetricContext()
 
-  const mapMetrics = (type: MetricType) => {
-    return urlMetrics.map((url) => {
-      return {
-        url: url.URL,
-        data:
-          // @ts-ignore: Unreachable code error
-          url[type].map((i: TimeValue) => {
-            return { value: i.value, time: new Date(i.time).getTime() }
-          })
-      }
-    })
-  }
+  const mapMetrics = (type: MetricType): ChartMetric[] =>
+    urlMetrics.map((url) => ({
+      url: url.URL,
+      data: url[type].map(
+        (i): TimeStampValue => ({
+          value: i.value,
+          time: new Date(i.time).getTime()
+        })
+      )
+    }))
 
   return (
     <Row gutter={[16, 16]}>
