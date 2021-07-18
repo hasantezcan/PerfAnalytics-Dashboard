@@ -37,9 +37,9 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
           showTitle: false
         },
         render: (name: any) => (
-          <Tooltip placement="topLeft" title={name}>
-            {name}
-          </Tooltip>
+          <a href={name} target="_blank">
+            {getClippedText(name, 50)}
+          </a>
         )
       },
       {
@@ -72,6 +72,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
         columns={columns}
         dataSource={expandedRowEntries}
         pagination={false}
+        tableLayout="auto"
       />
     )
   }
@@ -85,9 +86,9 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
         showTitle: false
       },
       render: (URL: any) => (
-        <Tooltip placement="topLeft" title={URL}>
-          {URL}
-        </Tooltip>
+        <a href={URL} target="_blank">
+          {getClippedText(URL, 65)}
+        </a>
       ),
       sorter: (a: any, b: any) => a.URL.length - b.URL.length
     },
@@ -98,11 +99,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
       ellipsis: {
         showTitle: false
       },
-      render: (UserAgent: any) => (
-        <Tooltip placement="topLeft" title={UserAgent}>
-          {UserAgent}
-        </Tooltip>
-      )
+      render: (UserAgent: any) => getClippedText(UserAgent, 20)
     },
     {
       title: 'FCP',
@@ -161,6 +158,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
         expandedRowKeys={expandedRowKeys}
         onExpand={onTableRowExpand}
         scroll={{ y: 400, x: 1024 }}
+        tableLayout="auto"
       />
     </>
   )
