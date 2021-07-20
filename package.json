@@ -4,9 +4,6 @@
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
-  "engines": {
-    "node": "14.x"
-  },
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
