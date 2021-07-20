@@ -2,10 +2,10 @@
   "name": "perf-analytics-dashboard",
   "author": "Hasan Tezcan",
   "version": "0.1.0",
-  "homepage": "https://hasantezcan.github.io/PerfAnalytics-Dashboard/",
+  "homepage": ".",
   "private": true,
   "engines": {
-    "node": "^10 || ^12 || >=14"
+    "node": "14.x"
   },
   "dependencies": {
     "@craco/craco": "^6.2.0",
