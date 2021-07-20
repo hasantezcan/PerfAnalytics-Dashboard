@@ -8,8 +8,8 @@ import {
   SetStateAction
 } from 'react'
 
-import { Metric, MetricByURL } from '~/models/Metric'
-import { fetchMetricByTimeRange, fetchMetricByURL } from '~/service'
+import { Metric, MetricByURL } from '../models/Metric'
+import { fetchMetricByTimeRange, fetchMetricByURL } from '../service'
 
 interface MetricContextModel {
   metrics: Metric[]

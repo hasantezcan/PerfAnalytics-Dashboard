@@ -8,8 +8,8 @@ import {
   Tooltip
 } from 'recharts'
 import { ChartMetric } from '~/models/Metric'
-import { stringToColor } from '~/util/color.utils'
-import { useMetricContext } from '~/context/MetricProvider'
+import { stringToColor } from '../../util/color.utils'
+import { useMetricContext } from '../../context/MetricProvider'
 import moment from 'moment'
 interface LineChartWidgetProps {
   data?: ChartMetric[]
