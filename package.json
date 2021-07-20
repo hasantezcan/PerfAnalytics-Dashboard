@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "homepage": "https://hasantezcan.github.io/PerfAnalytics-Dashboard/",
   "private": true,
+  "engines": {
+    "node": "^10 || ^12 || >=14"
+  },
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
