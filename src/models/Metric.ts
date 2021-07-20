@@ -16,6 +16,7 @@ interface Metric {
   WindowLoad: number
   Entries: Entry[]
   createdAt: Date
+  _id: string
 }
 
 interface TimeValue {

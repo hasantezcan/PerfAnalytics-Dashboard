@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Table, Typography } from 'antd'
 import moment from 'moment'
 
-import { getClippedText } from '~/util/text.utils'
+import { getClippedText } from '../../util/text.utils'
 import { Metric } from '~/models/Metric'
 
 import './style.css'
