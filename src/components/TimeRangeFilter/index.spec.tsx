@@ -5,10 +5,7 @@ import TimeRangeFilter from '.'
 const sandbox = sinon.createSandbox()
 
 describe('TimeRangeFilter specs', () => {
-  const handleTimeRange = (start: any, end: any) => {
-    console.log(`start`, start)
-    console.log(`end`, end)
-  }
+  const handleTimeRange = (start: any, end: any) => {}
 
   let handleTimeRangeSpy: SinonSpy
 

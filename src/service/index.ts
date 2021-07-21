@@ -9,7 +9,6 @@ async function fetchMetricByTimeRange(start?: Date, end?: Date) {
       end
     }
   })
-  console.log(`data time range: `, data)
   return data as Metric[]
 }
 
@@ -20,7 +19,6 @@ async function fetchMetricByURL(start?: Date, end?: Date) {
       end
     }
   })
-  console.log(`data url: `, data)
 
   return data as MetricByURL[]
 }
