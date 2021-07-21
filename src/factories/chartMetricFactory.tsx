@@ -3,7 +3,8 @@ import { ChartMetric } from '~/models/Metric'
 
 const {
   datatype: { number },
-  lorem: { word }
+  lorem: { word },
+  date: { past }
 } = faker
 
 function chartMetricFactory(times: number = 1): ChartMetric[] {
@@ -13,7 +14,7 @@ function chartMetricFactory(times: number = 1): ChartMetric[] {
       data: Array.from({ length: times }, () => {
         return {
           value: number(),
-          time: number()
+          time: new Date(past()).getTime()
         }
       })
     }
