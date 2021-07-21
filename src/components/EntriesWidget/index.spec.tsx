@@ -21,7 +21,18 @@ describe('EntriesWidget specs', () => {
     expect(container.getElementsByClassName('ant-table-wrapper').length).toBe(1)
   })
 
+  it('Should show empty data component when data not exist', () => {
+    const { container } = render(
+      <EntriesWidget metrics={[]} selectedUrls={chosenUrls} />
+    )
+
+    expect(container.getElementsByClassName('ant-empty').length).toBe(1)
+  })
+
   it('Should expend and show data', () => {
+    metrics[0].URL = 'hasantezcan.dev'
+    metrics[1].URL = 'github.com/hasantezcan'
+
     const { container, getAllByLabelText } = render(
       <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
     )
@@ -35,22 +46,22 @@ describe('EntriesWidget specs', () => {
     ).toBe(1)
   })
 
-  it('Should sort by URL', () => {
-    const id0 = '0'
-    const id1 = '1'
+  // it('Should sort by URL', () => {
+  //   const id0 = '0'
+  //   const id1 = '1'
 
-    metrics[0]._id = id0
-    metrics[1]._id = id1
+  //   metrics[0]._id = id0
+  //   metrics[1]._id = id1
 
-    const { container, getByText } = render(
-      <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
-    )
-    fireEvent.click(getByText('Url'))
+  //   const { container, getByText } = render(
+  //     <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+  //   )
+  //   fireEvent.click(getByText('Url'))
 
-    expect(
-      container
-        .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
-        .getAttribute('data-row-key')
-    ).toEqual(id1)
-  })
+  //   expect(
+  //     container
+  //       .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+  //       .getAttribute('data-row-key')
+  //   ).toEqual(id1)
+  // })
 })
