@@ -3,9 +3,9 @@ import { useMetricContext } from '~/context/MetricProvider'
 import EntriesWidget from '~/components/EntriesWidget'
 
 function Entries() {
-  const { metrics } = useMetricContext()
+  const { metrics, selectedUrls } = useMetricContext()
 
-  return <EntriesWidget metrics={metrics} />
+  return <EntriesWidget metrics={metrics} selectedUrls={selectedUrls} />
 }
 
 export default Entries

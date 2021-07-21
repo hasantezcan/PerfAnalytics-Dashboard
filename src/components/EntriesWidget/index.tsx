@@ -10,9 +10,10 @@ import './style.css'
 const { Title } = Typography
 interface EntriesWidgetProps {
   metrics: Metric[]
+  selectedUrls: string[]
 }
 
-function EntriesWidget({ metrics }: EntriesWidgetProps) {
+function EntriesWidget({ metrics, selectedUrls }: EntriesWidgetProps) {
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const [expandedRowEntries, setExpandedRowEntries] = useState([])
 
@@ -154,7 +155,7 @@ function EntriesWidget({ metrics }: EntriesWidgetProps) {
         className="table-striped-rows"
         columns={columns}
         expandable={{ expandedRowRender }}
-        dataSource={metrics}
+        dataSource={metrics?.filter((item) => selectedUrls.includes(item.URL))}
         expandedRowKeys={expandedRowKeys}
         onExpand={onTableRowExpand}
         scroll={{ y: 400, x: 1024 }}
