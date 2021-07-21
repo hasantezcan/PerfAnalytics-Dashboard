@@ -18,7 +18,7 @@ describe('EntriesWidget specs', () => {
       <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
     )
 
-    expect(getByText('Metrics and Entries'))
+    expect(getByText('Metrics and Entries')).toBeInTheDocument()
     expect(container.getElementsByClassName('ant-table-wrapper').length).toBe(1)
   })
 

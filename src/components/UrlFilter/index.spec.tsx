@@ -24,7 +24,7 @@ describe('UrlFilter specs', () => {
     )
 
     expect(container.getElementsByClassName('ant-typography').length).toBe(1)
-    expect(getByText('Check all'))
+    expect(getByText('Check all')).toBeInTheDocument()
     expect(container.getElementsByClassName('ant-checkbox-group').length).toBe(
       1
     )
@@ -48,7 +48,9 @@ describe('UrlFilter specs', () => {
     )
 
     expect(container.getElementsByClassName('ant-typography').length).toBe(1)
-    expect(getByText('There is not metric found in this time range'))
+    expect(
+      getByText('There is not metric found in this time range')
+    ).toBeInTheDocument()
     expect(container.getElementsByClassName('ant-empty-footer').length).toBe(1)
   })
 })

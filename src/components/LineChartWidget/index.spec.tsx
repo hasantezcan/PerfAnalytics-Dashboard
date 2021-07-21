@@ -1,8 +1,9 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import LineChartWidget from '.'
 import { ChartMetric } from '~/models/Metric'
 
 import { chartMetricFactory } from '../../factories/chartMetricFactory'
+import moment from 'moment'
 
 describe('LineChartWidget specs', () => {
   let data: ChartMetric[]
@@ -35,17 +36,29 @@ describe('LineChartWidget specs', () => {
     ).toBe(1)
   })
 
-  // it('Should show two line chart if selected url count is two ', () => {
-  //   data[0].url = 'url0'
-  //   data[1].url = 'url1'
-  //   console.log(`data`, data[0].data)
+  it('Should show two line chart if selected url count is two ', () => {
+    data[0].url = 'url0'
+    data[1].url = 'url1'
 
-  //   const { container, debug } = render(
-  //     <LineChartWidget selectedUrls={['url0, url1']} data={data} />
-  //   )
+    const { container } = render(
+      <LineChartWidget selectedUrls={['url0, url1']} data={data} />
+    )
 
-  //   console.log(`debug`, debug())
+    waitFor(() => {
+      expect(container.getElementsByClassName('recharts-line').length).toBe(2)
+    })
+  })
 
-  //   expect(container.getElementsByClassName('recharts-xAxis').length).toBe(1)
-  // })
+  it('Should format date', () => {
+    const date = new Date().getTime()
+    data[0].data[0].time = date
+
+    const { getByText } = render(
+      <LineChartWidget selectedUrls={['url0, url1']} data={data} />
+    )
+
+    waitFor(() => {
+      expect(getByText(moment(date).format('HH:mm:ss'))).toBe(true)
+    })
+  })
 })
