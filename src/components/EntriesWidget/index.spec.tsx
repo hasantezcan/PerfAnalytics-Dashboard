@@ -33,14 +33,13 @@ describe('EntriesWidget specs', () => {
   })
 
   it('Should sort by URL', () => {
-    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
-
     const id0 = '0'
     const id1 = '1'
 
     metrics[0]._id = id0
     metrics[1]._id = id1
 
+    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
     fireEvent.click(getByText('Url'))
 
     expect(
