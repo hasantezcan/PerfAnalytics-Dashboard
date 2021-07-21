@@ -78,6 +78,7 @@ function EntriesWidget({ metrics, selectedUrls }: EntriesWidgetProps) {
     )
   }
 
+  /* istanbul ignore next */
   const columns = [
     {
       title: 'Url',

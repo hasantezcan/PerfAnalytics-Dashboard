@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import EntriesWidget from '.'
 import { Metric } from '~/models/Metric'
 
@@ -6,10 +6,11 @@ import { metricFactory } from '../../factories/metricfactory'
 
 describe('EntriesWidget specs', () => {
   let metrics: Metric[]
-  let chosenUrls: string[] = ['hasantezcan.dev']
+  let chosenUrls: string[]
 
   beforeEach(() => {
     metrics = metricFactory(2)
+    chosenUrls = []
   })
 
   it('Should render', () => {
@@ -30,6 +31,8 @@ describe('EntriesWidget specs', () => {
   })
 
   it('Should expend and show data', () => {
+    chosenUrls = ['hasantezcan.dev']
+
     metrics[0].URL = 'hasantezcan.dev'
     metrics[1].URL = 'github.com/hasantezcan'
 
@@ -46,22 +49,122 @@ describe('EntriesWidget specs', () => {
     ).toBe(1)
   })
 
-  // it('Should sort by URL', () => {
-  //   const id0 = '0'
-  //   const id1 = '1'
+  describe('Sort specs', () => {
+    it('Should sort by URL', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
 
-  //   metrics[0]._id = id0
-  //   metrics[1]._id = id1
+      metrics[0].URL = 'github.com/hasantezcan'
+      metrics[1].URL = 'hasantezcan.dev'
 
-  //   const { container, getByText } = render(
-  //     <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
-  //   )
-  //   fireEvent.click(getByText('Url'))
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
 
-  //   expect(
-  //     container
-  //       .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
-  //       .getAttribute('data-row-key')
-  //   ).toEqual(id1)
-  // })
+      fireEvent.click(getByText('Url'))
+
+      expect(
+        container
+          .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+          .getAttribute('data-row-key')
+      ).toEqual(metrics[1]._id)
+    })
+
+    it('Should sort by FCP', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
+
+      metrics[0].FCP = 500
+      metrics[1].FCP = 100
+
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
+      fireEvent.click(getByText('FCP'))
+
+      waitFor(() => {
+        expect(
+          container
+            .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+            .getAttribute('data-row-key')
+        ).toEqual(metrics[1]._id)
+      })
+    })
+
+    it('Should sort by TTFB', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
+
+      metrics[0].TTFB = 500
+      metrics[1].TTFB = 100
+
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
+      fireEvent.click(getByText('TTFB'))
+
+      waitFor(() => {
+        expect(
+          container
+            .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+            .getAttribute('data-row-key')
+        ).toEqual(metrics[1]._id)
+      })
+    })
+
+    it('Should sort by DomLoad', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
+
+      metrics[0].DomLoad = 500
+      metrics[1].DomLoad = 100
+
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
+      fireEvent.click(getByText('DomLoad'))
+
+      waitFor(() => {
+        expect(
+          container
+            .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+            .getAttribute('data-row-key')
+        ).toEqual(metrics[1]._id)
+      })
+    })
+
+    it('Should sort by WindowLoad', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
+
+      metrics[0].WindowLoad = 500
+      metrics[1].WindowLoad = 100
+
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
+      fireEvent.click(getByText('WindowLoad'))
+
+      waitFor(() => {
+        expect(
+          container
+            .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+            .getAttribute('data-row-key')
+        ).toEqual(metrics[1]._id)
+      })
+    })
+
+    it('Should sort by Time', () => {
+      chosenUrls = ['hasantezcan.dev', 'github.com/hasantezcan']
+
+      const { container, getByText } = render(
+        <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+      )
+      fireEvent.click(getByText('Time'))
+      fireEvent.click(getByText('Time'))
+
+      waitFor(() => {
+        expect(
+          container
+            .getElementsByClassName('ant-table-row ant-table-row-level-0')[0]
+            .getAttribute('data-row-key')
+        ).toEqual(metrics[1]._id)
+      })
+    })
+  })
 })
