@@ -19,7 +19,25 @@ function BaseLayout({ children }: PropsWithChildren<BaseLayoutProps>) {
       <Footer>
         <Row justify={'center'}>
           <p>
-            Made by <a href="https://github.com/hasantezcan">@hasantezcan</a>
+            Made by{' '}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/hasantezcan"
+            >
+              @hasantezcan{' '}
+            </a>
+          </p>
+          <p></p>
+          <p>
+            , Source code{' '}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/hasantezcan/PerfAnalytics-Dashboard"
+            >
+              in GitHub
+            </a>
           </p>
         </Row>
       </Footer>
