@@ -6,13 +6,16 @@ import { metricFactory } from '../../factories/metricfactory'
 
 describe('EntriesWidget specs', () => {
   let metrics: Metric[]
+  let chosenUrls: string[] = ['hasantezcan.dev']
 
   beforeEach(() => {
     metrics = metricFactory(2)
   })
 
   it('Should render', () => {
-    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
+    const { container, getByText } = render(
+      <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+    )
 
     expect(getByText('Metrics and Entries'))
     expect(container.getElementsByClassName('ant-table-wrapper').length).toBe(1)
@@ -20,7 +23,7 @@ describe('EntriesWidget specs', () => {
 
   it('Should expend and show data', () => {
     const { container, getAllByLabelText } = render(
-      <EntriesWidget metrics={metrics} />
+      <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
     )
 
     fireEvent.click(getAllByLabelText('Expand row')[0])
@@ -39,7 +42,9 @@ describe('EntriesWidget specs', () => {
     metrics[0]._id = id0
     metrics[1]._id = id1
 
-    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
+    const { container, getByText } = render(
+      <EntriesWidget metrics={metrics} selectedUrls={chosenUrls} />
+    )
     fireEvent.click(getByText('Url'))
 
     expect(
