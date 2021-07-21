@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import EntriesWidget from '.'
 import { Metric } from '~/models/Metric'
 
@@ -12,10 +12,10 @@ describe('EntriesWidget specs', () => {
   })
 
   it('Should render', () => {
-    const { container } = render(<EntriesWidget metrics={metrics} />)
+    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
 
-    expect(container.getElementsByTagName('Table')).toHaveLength
-    expect(container.getElementsByTagName('Title')).toHaveLength
+    expect(getByText('Metrics and Entries'))
+    expect(container.getElementsByClassName('ant-table-wrapper').length).toBe(1)
   })
 
   it('Should expend and show data', () => {
@@ -33,9 +33,7 @@ describe('EntriesWidget specs', () => {
   })
 
   it('Should sort by URL', () => {
-    const { container, debug, getByText } = render(
-      <EntriesWidget metrics={metrics} />
-    )
+    const { container, getByText } = render(<EntriesWidget metrics={metrics} />)
 
     const id0 = '0'
     const id1 = '1'
