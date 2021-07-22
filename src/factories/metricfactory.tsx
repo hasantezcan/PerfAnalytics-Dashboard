@@ -7,7 +7,7 @@ const {
 } = faker
 
 function metricFactory(times: number = 1): Metric[] {
-  return Array.from({ length: times }, (index: number) => {
+  return Array.from({ length: times }, (value, index: number) => {
     return {
       URL: word(),
       UserAgent: word(),

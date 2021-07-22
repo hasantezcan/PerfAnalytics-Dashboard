@@ -1,7 +1,7 @@
 import { lorem } from 'faker'
 import { render } from '@testing-library/react'
-import { stringToColor } from '../../src/util/color.utils'
-import { getClippedText } from '../../src/util/text.utils'
+import { stringToColor } from './color.utils'
+import { getClippedText } from './text.utils'
 
 describe('Color specs', () => {
   it('Should return #000000 for empty input', () => {
