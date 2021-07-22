@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
-import LineChartWidget from '.'
+import TitleWidget from '.'
 
 describe('LineChartWidget specs', () => {
   it('Should render', () => {
-    const { container } = render(<LineChartWidget />)
+    const { container } = render(<TitleWidget />)
 
     expect(container.getElementsByClassName('ant-typography').length).toBe(1)
   })
