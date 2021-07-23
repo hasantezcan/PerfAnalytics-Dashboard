@@ -33,16 +33,16 @@ You can create analytics metric data from those sites:
 ## Features
 
 - Initially, the dashboard shows the last **30 minutes metrics**. 
-- You can **select a time range** whatever you want from the range picker section.
+- You can **select a time range** from the range picker section.
 - And you can **filter URLs** which want to see from the URL filter section.
   - This filter affects main charts and entries.
-- You can see the **four main metrics** **with the chart** in the middle of the page. If it exists **multiple URLs** you will see all of them in the chart initially. You can filter URLs if you want in later.
+- You can see the **four main metrics** **with the chart** in the middle of the page. If there are **multiple URLs** exists you will see all of them in the chart initially but you can filter URLs if you want in later.
 - You can see all metrics values in the **table from the bottom of the site.** This table shows every single analytics metric record coming from the client.  
-  - You can **filter as ascending and descending** all metrics values from here. 
-  - And also you can **click the little plus button** from the start of the row and **expand the entires section**. These are the entires files load with the victim site. You can see the type of file, response time transfer size from here.
-- This dashboard also has **responsive support**. You can watch metric records also your mobile phone or any device.
-- This application is written with **react typescript**. And whole structure covered with types.
-- Also **tested** the **whole application** with react testing library and jest you can see test coverage value in the next section.
+  - You can **sort them as ascending and descending** from head of the table. 
+  - And also you can **click the little plus button** from the start of the row and **expand the entires section**. These are the entry files that load with the site where metrics come from. You can see the type of file, response time and transfer size from here.
+- This dashboard also has **responsive support**. You can watch metric records on mobile phones or any device.
+- This application is written with **react typescript**. Whole structure covered with types.
+- **Application** is **tested** with *`react testing library`* and *`jest`* you can see test coverage value in the next section.
 ## Code coverage
 
 ![code coverage](_data/2021-07-22-15-01-57.png)
