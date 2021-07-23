@@ -4,8 +4,16 @@ PerfAnalytics **Dashboard** is part of PerfAnalytics ecosystem which collects an
 
 PerfAnalytics **Dashboard** shows metrics that comes from [**PerfAnalytics API**](https://github.com/hasantezcan/PerfAnalytics-api)
 
-![preview.gif](_data/preview.gif)
 
+<p align="center">
+	<a href="https://hasantezcan.github.io/PerfAnalytics-Dashboard/">
+		<img alt="preview.gif" src="_data/preview.gif" width="800">
+  <br>
+	</a>
+	<em>Desktop preview</em>
+</p>
+
+[👉 Click for detailed showcase video](https://youtu.be/4Qj3StdAMDY) 
 
 ## Demo Sites for Metric Data
 
