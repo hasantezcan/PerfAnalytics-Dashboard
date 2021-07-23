@@ -53,7 +53,7 @@ function LineChartWidget({ data, selectedUrls, title }: LineChartWidgetProps) {
                 tickFormatter={(value) => `${value} ms`}
               />
               <Tooltip
-                labelFormatter={(name: any) => moment(name).format('HH:mm')}
+                labelFormatter={(name: any) => moment(name).format('HH:mm:ss')}
               />
             </LineChart>
           </ResponsiveContainer>
