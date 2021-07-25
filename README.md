@@ -30,6 +30,7 @@ You can create analytics metric data from those sites:
 - Deployed with [GitHub pages](https://pages.github.com/).
 - Used [GitHub Actions](https://github.com/actions) for CI/CD   
 
+> **Dockerfile** is ready if you want to use the dockerized version you can use it!
 ## Features
 
 - Initially, the dashboard shows the last **30 minutes metrics**. 
